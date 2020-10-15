@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserMapper {
     User findById(Long id);
+    User userLogin(String account,String passWord);
 }

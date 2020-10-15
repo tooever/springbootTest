@@ -11,4 +11,7 @@
     <select id="findById" resultMap="BaseResultMap">
         select * from user where id = #{id}
     </select>
+    <select id="userLogin" resultMap="BaseResultMap">
+        select * from user where account = #{account} AND password=#{passWord}
+    </select>
 </mapper>
