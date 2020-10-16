@@ -50,14 +50,13 @@ public class JwtUtils {
      * @return
      */
     public static Claims checkJWT(String token) {
-
         try {
-            final Claims claims = Jwts.parser().setSigningKey(APPSECRET).
-                    parseClaimsJws(token).getBody();
-            return claims;
-
+            return Jwts.parser()
+                    .setSigningKey(APPSECRET)
+                    .parseClaimsJws(token)
+                    .getBody();
         } catch (Exception e) {
+            return null;
         }
-        return null;
     }
 }
