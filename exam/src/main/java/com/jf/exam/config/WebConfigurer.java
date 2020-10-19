@@ -17,7 +17,10 @@ public class WebConfigurer implements WebMvcConfigurer {
         registry.addInterceptor(authenticationInterceptor())
                 .addPathPatterns("/**")
                 .excludePathPatterns("/v2/**","/doc.html","/swagger-resources/**","/webjars/**","/swagger-ui.html/**","/error","/csrf","/favico*","/api-docs","swagger.json","/configuration/**")
-                .excludePathPatterns("/user/login");
+                .excludePathPatterns("/user/login")
+                 .excludePathPatterns("/static/**",
+                "/**/*.css", "/**/*.js", "/**/*.png", "/**/*.jpg",
+                "/**/*.jpeg", "/**/*.gif", "/**/fonts/*", "/**/*.svg");
     }
     @Bean
     public JwtAuthenticationInterceptor authenticationInterceptor() {
