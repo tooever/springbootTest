@@ -26,6 +26,7 @@ public class UserController extends BaseController {
     @RequestMapping(value ="/finduser", method = {RequestMethod.GET}, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value="通过id寻找用户")
     public User findUser(@RequestParam(value = "id") Long id){
+       JwtUserInfo u = GetUserInfo();
         return userService.findById(id);
     }
 
