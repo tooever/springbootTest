@@ -16,8 +16,6 @@ public class JwtAuthenticationInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object object) throws Exception {
-        HandlerMethod handlerMethod = (HandlerMethod) object;
-        Method method = handlerMethod.getMethod();
         //授权请求直接放行
         if (httpServletRequest instanceof HttpServletRequest) {
             if (httpServletRequest.getMethod().toUpperCase().equals("OPTIONS")) {
