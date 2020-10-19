@@ -16,7 +16,8 @@ public class WebConfigurer implements WebMvcConfigurer {
         //默认拦截所有路径
         registry.addInterceptor(authenticationInterceptor())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/doc.html","/swagger-resources/**","/webjars/**","/swagger-ui.html/**","/error","/csrf","/favico*","/api-docs","swagger.json");
+                .excludePathPatterns("/v2/**","/doc.html","/swagger-resources/**","/webjars/**","/swagger-ui.html/**","/error","/csrf","/favico*","/api-docs","swagger.json","/configuration/**")
+                .excludePathPatterns("/user/login");
     }
     @Bean
     public JwtAuthenticationInterceptor authenticationInterceptor() {
