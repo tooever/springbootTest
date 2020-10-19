@@ -1,4 +1,3 @@
-
 spring:
   application:
     name: myspringboot
@@ -27,8 +26,7 @@ pagehelper:
   support-methods-arguments: true
   params: count=countSql
 logging:
-  level:
-    com.example.mapper: debug
+  com.jf.exam: ERROR
 
 ---
 
