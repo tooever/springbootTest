@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -22,10 +23,12 @@ import javax.servlet.http.HttpServletRequest;
 public class UserController extends BaseController {
     @Resource
     private UserService userService;
-
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(UserController.class);
     @RequestMapping(value ="/finduser", method = {RequestMethod.GET}, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value="通过id寻找用户")
     public CommResult findUser(@RequestParam(value = "id") Long id){
+        log.error("testlog");
+       JwtUserInfo u = GetUserInfo();
         User data= userService.findById(id);
         return new CommResult(ResultCode.success,"获取用户信息成功",data);
     }
@@ -47,4 +50,12 @@ public class UserController extends BaseController {
         String token = JwtUtils.geneJsonWebToken(new JwtUserInfo(ckResult.getData().getId(),ckResult.getData().getName()));
         return new CommResult(ResultCode.success,"获取token成功",token);
     }
+
+    @RequestMapping(value ="/userlist", method = {RequestMethod.GET}, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value="通过id寻找用户")
+    public CommResult userlist(){
+        List<User> data= userService.findUserList();
+        return new CommResult(ResultCode.success,"获取用户列表信息成功",data);
+    }
+
 }
