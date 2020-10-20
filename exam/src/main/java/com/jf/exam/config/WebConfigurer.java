@@ -13,11 +13,14 @@ public class WebConfigurer implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 
-        //默认拦截所有路径
         registry.addInterceptor(authenticationInterceptor())
+                //默认拦截所有路径
                 .addPathPatterns("/**")
+                //放行swagger相关资源
                 .excludePathPatterns("/v2/**","/doc.html","/swagger-resources/**","/webjars/**","/swagger-ui.html/**","/error","/csrf","/favico*","/api-docs","swagger.json","/configuration/**")
+                //放行登录接口
                 .excludePathPatterns("/user/login")
+                //放行静态资源
                  .excludePathPatterns("/static/**",
                 "/**/*.css", "/**/*.js", "/**/*.png", "/**/*.jpg",
                 "/**/*.jpeg", "/**/*.gif", "/**/fonts/*", "/**/*.svg");

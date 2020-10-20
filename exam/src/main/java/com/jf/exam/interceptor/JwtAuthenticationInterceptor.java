@@ -22,14 +22,14 @@ public class JwtAuthenticationInterceptor implements HandlerInterceptor {
                 return true;
             }
         }
-        // 从请求头中取出 token  这里需要和前端约定好把jwt放到请求头一个叫token的地方
+        // 从请求头中取出 token
         String token = httpServletRequest.getHeader("Authorization");
         if (StringUtils.isEmpty(token) || !token.startsWith("Bearer")){
             httpServletResponse.setStatus(401);
             throw new RuntimeException("401");
         }
 
-        // token有效性校验 包含格式和时效
+        //token有效性校验 包含格式和时效
         Claims claims = JwtUtils.checkJWT(token.replace("Bearer ",""));
         if (claims==null){
             httpServletResponse.setStatus(401);
