@@ -25,8 +25,9 @@ public class UserController extends BaseController {
 
     @RequestMapping(value ="/finduser", method = {RequestMethod.GET}, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value="通过id寻找用户")
-    public User findUser(@RequestParam(value = "id") Long id){
-        return userService.findById(id);
+    public CommResult findUser(@RequestParam(value = "id") Long id){
+        User data= userService.findById(id);
+        return new CommResult(ResultCode.success,"获取用户信息成功",data);
     }
 
     @RequestMapping(value ="/login", method = {RequestMethod.POST})
