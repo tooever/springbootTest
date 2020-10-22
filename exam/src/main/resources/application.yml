@@ -15,10 +15,15 @@ server:
     uri-encoding: UTF-8
     max-connections: 500
     accept-count: 200
-  port: 8075
+  port: 8087
 mybatis:
   type-aliases-package: com.jf.exam.mapper
   mapper-locations: classpath:mapper/*.xml
+
+mapper:
+  identity: MYSQL
+  mappers: com.jf.exam.config.MyMapper
+
 
 pagehelper:
   helper-dialect: mysql
