@@ -27,14 +27,14 @@ public class UserController extends BaseController {
     @Resource
     private UserService userService;
     private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(UserController.class);
-    @RequestMapping(value ="/finduser", method = {RequestMethod.GET}, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ApiOperation(value="通过id寻找用户")
-    public CommResult findUser(@RequestParam(value = "id") Long id){
-        log.error("testlog");
-       JwtUserInfo u = GetUserInfo();
-        User data= userService.selectByPrimaryKey(id);
-        return new CommResult(ResultCode.success,"获取用户信息成功",data);
-    }
+//    @RequestMapping(value ="/finduser", method = {RequestMethod.GET}, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+//    @ApiOperation(value="通过id寻找用户")
+//    public CommResult findUser(@RequestParam(value = "id") Long id){
+//        log.error("testlog");
+//       JwtUserInfo u = GetUserInfo();
+//        User data= userService.selectByPrimaryKey(id);
+//        return new CommResult(ResultCode.success,"获取用户信息成功",data);
+//    }
 
     @RequestMapping(value ="/login", method = {RequestMethod.POST})
     @ApiOperation(value="用户登录")

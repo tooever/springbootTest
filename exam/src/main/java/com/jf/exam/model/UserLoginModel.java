@@ -19,7 +19,7 @@ public class UserLoginModel {
         return username;
     }
 
-    public void setAccount(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
