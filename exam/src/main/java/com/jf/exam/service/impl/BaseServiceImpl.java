@@ -7,6 +7,7 @@ import com.jf.exam.config.MyMapper;
 import com.jf.exam.service.BaseService;
 import com.jf.exam.utils.BaseExample;
 import org.apache.ibatis.session.RowBounds;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
@@ -16,8 +17,8 @@ import java.util.List;
 
 @Service
 @Transactional
-public abstract class BaseServiceImpl  <T> implements BaseService<T> {
-    @Resource
+public abstract class BaseServiceImpl<T> implements BaseService<T> {
+    @Autowired
     private MyMapper<T> mapper;
 
     @Override
@@ -116,8 +117,8 @@ public abstract class BaseServiceImpl  <T> implements BaseService<T> {
     }
 
     @Override
-    public T selectByPrimaryKey(Example example) {
-        return mapper.selectByPrimaryKey(example);
+    public T selectByPrimaryKey(Long id) {
+        return mapper.selectByPrimaryKey(id);
     }
 
 
@@ -130,7 +131,6 @@ public abstract class BaseServiceImpl  <T> implements BaseService<T> {
      */
     @Override
     public PageInfo<T> selectPageInfo(BaseExample example) {
-
         if (example.getNeedPage()) {
             PageHelper.startPage(example.getPageNum() == null ? 0 : example.getPageNum(), example.getPageSize() == null ? 10 : example.getPageSize());
         }

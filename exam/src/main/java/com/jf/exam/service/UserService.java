@@ -5,9 +5,8 @@ import com.jf.exam.vo.CommResult;
 
 import java.util.List;
 
-public interface UserService {
-    public User findById(long id);
-    public CommResult userLogin(String account, String PassWord);
+public interface UserService  extends  BaseService<User>{
 
-    public List<User> findUserList();
+        public CommResult userLogin(String account, String PassWord);
+
 }

@@ -23,7 +23,7 @@ public interface BaseService<T> {
     List<T> selectAll();
 
 
-    T selectByPrimaryKey(Example example);
+    T selectByPrimaryKey(Long example);
 
 
     public int selectCount(T o);

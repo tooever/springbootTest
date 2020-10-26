@@ -4,23 +4,23 @@ import java.io.Serializable;
 
 public class UserLoginModel {
     private static final long serialVersionUID = 1L;
-    private String account;
+    private String username;
     private String password;
 
     public UserLoginModel() {
     }
 
-    public UserLoginModel(String account, String password) {
-        this.account = account;
+    public UserLoginModel(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
-    public String getAccount() {
-        return account;
+    public String getUsername() {
+        return username;
     }
 
-    public void setAccount(String account) {
-        this.account = account;
+    public void setAccount(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
