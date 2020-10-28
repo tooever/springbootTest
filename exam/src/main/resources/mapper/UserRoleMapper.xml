@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jf.exam.mapper.UserRoleMapper">
+  <resultMap id="BaseResultMap" type="com.jf.exam.pojo.UserRole">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="rolename" jdbcType="VARCHAR" property="Rolename" />
+    <result column="rolecode" jdbcType="VARCHAR" property="Rolecode" />
+  </resultMap>
+</mapper>

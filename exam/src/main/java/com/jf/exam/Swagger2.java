@@ -48,7 +48,7 @@ public class Swagger2 {
                 // 版本号
                 .version("1.0")
                 // 描述
-                .description("XXX管理系统接口")
+                .description("测试管理系统接口")
                 .build();
     }
 }

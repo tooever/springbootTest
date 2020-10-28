@@ -6,6 +6,7 @@ import com.jf.exam.pojo.User;
 import com.jf.exam.service.UserService;
 import com.jf.exam.vo.CommResult;
 import com.jf.exam.vo.ResultCode;
+import com.jf.exam.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,5 +36,11 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements  UserServi
         result.setData(user);
         return result;
     }
+    @Override
+    public UserVo GetUserRole(Integer id) {
+        UserVo user = userMapper.getUserRole(id);
+        return user;
+    }
+
 
 }

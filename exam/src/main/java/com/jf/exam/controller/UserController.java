@@ -9,6 +9,7 @@ import com.jf.exam.utils.JwtUtils;
 import com.jf.exam.vo.CommResult;
 import com.jf.exam.vo.JwtUserInfo;
 import com.jf.exam.vo.ResultCode;
+import com.jf.exam.vo.UserVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.MediaType;
@@ -38,6 +39,7 @@ public class UserController extends BaseController {
 
     @RequestMapping(value ="/login", method = {RequestMethod.POST})
     @ApiOperation(value="用户登录")
+    @ResponseBody
     public CommResult login(@RequestBody UserLoginModel logininfo){
         CommResult result =new CommResult();
         if (logininfo==null|| StringUtils.isEmpty(logininfo.getUsername())||StringUtils.isEmpty(logininfo.getPassword()) ){
@@ -69,8 +71,8 @@ public class UserController extends BaseController {
     public CommResult getBookDetails(@RequestParam(value = "id") Long  id) {
         Example example = new Example(User.class);
         example.createCriteria().andEqualTo("id", id);
-        User book = userService.selectByPrimaryKey(id);
-        return new CommResult(ResultCode.success, "获取用户信息成功", book);
+        User us = userService.selectByPrimaryKey(id);
+        return new CommResult(ResultCode.success, "获取用户信息成功", us);
     }
 
     @RequestMapping(value = "/userdel", method = {RequestMethod.DELETE}, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -136,5 +138,13 @@ public class UserController extends BaseController {
         } else {
             return new CommResult(ResultCode.error, "更新用户信息失败,用户不存在", null);
         }
+    }
+
+    @RequestMapping(value = "/userRole", method = {RequestMethod.GET}, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "获取用户角色")
+    public CommResult getUserRole(@RequestParam(value = "id") Integer id) {
+
+        UserVo us = userService.GetUserRole(id);
+        return new CommResult(ResultCode.success, "获取用户信息成功", us);
     }
 }

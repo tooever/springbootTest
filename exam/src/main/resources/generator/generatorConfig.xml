@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <!--处理sql中的`符号-->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <!--添加自定义的继承接口-->
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.jf.exam.config.MyMapper"/>
+        </plugin>
+
+        <!--数据源配置-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://192.168.40.213:3306/test?"
+                        userId="root"
+                        password="jfkjyfb">
+        </jdbcConnection>
+
+        <!--model包路径-->
+        <javaModelGenerator targetPackage="com.jf.exam.pojo" targetProject="src/main/java"/>
+        <!--mapper.xml包路径-->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
+        <!--mapper包路径-->
+        <javaClientGenerator targetPackage="com.jf.exam.mapper" targetProject="src/main/java"
+                             type="XMLMAPPER"/>
+        <!--表配置，tableName支持%，表示全部生成-->
+        <table tableName="user" domainObjectName="User">
+            <!--mysql 配置-->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+    </context>
+</generatorConfiguration>
