@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jf.exam.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.jf.exam.pojo.User">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="sfzh" jdbcType="VARCHAR" property="sfzh" />
+    <result column="rolename" jdbcType="VARCHAR" property="rolename" />
+    <result column="status" jdbcType="CHAR" property="status" />
+  </resultMap>
+
+  <resultMap id="userRoleMap" type="com.jf.exam.vo.UserVo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="sfzh" jdbcType="VARCHAR" property="sfzh" />
+    <result column="rolename" jdbcType="VARCHAR" property="rolename" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <collection property="userRoleList" ofType="com.jf.exam.pojo.UserRole">
+      <id column="rid" jdbcType="INTEGER" property="id" />
+      <result column="rolename" jdbcType="VARCHAR" property="rolename" />
+      <result column="rolecode" jdbcType="VARCHAR" property="rolecode" />
+    </collection>
+  </resultMap>
+  <select id="getUserRole" resultMap="userRoleMap">
+     select u.*,r.id as rid,r.rolename,r.rolecode from user as u inner join t_userrole as r on u.rolename=r.rolename
+     where u.id= #{id}
+    </select>
+</mapper>
